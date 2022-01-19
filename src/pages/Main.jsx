@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react/cjs/react.development";
 import ConversationMain from "../components/ConversationMain";
 import SidePanel from "../components/SidePanel";
 
 function Main({ currentUser, users }) {
+  const params = useParams();
   const navigate = useNavigate();
   const [conversations, setConversations] = useState([]);
 
@@ -31,7 +32,12 @@ function Main({ currentUser, users }) {
       />
 
       {/* <!-- Main Chat Section --> */}
-      <ConversationMain />
+      {params.conversationId ? (
+        <ConversationMain
+          conversationId={params.conversationId}
+          currentUser={currentUser}
+        />
+      ) : null}
     </div>
   );
 }

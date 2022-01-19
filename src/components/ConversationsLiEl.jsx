@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function ConversationsLiEl({ currentUser, users, conversation }) {
+  const navigate = useNavigate();
   const user = users.find(
     (user) =>
       (user.id === conversation.userId ||
@@ -9,14 +11,18 @@ function ConversationsLiEl({ currentUser, users, conversation }) {
   );
   const [messages, setMessages] = useState([]);
   useEffect(() => {
-    console.log(conversation.id);
     fetch(`http://localhost:4000/messages?conversationId=${conversation.id}`)
       .then((resp) => resp.json())
       .then((messagesFromServer) => setMessages(messagesFromServer));
   }, []);
   return (
     <li>
-      <button className="chat-button">
+      <button
+        className="chat-button"
+        onClick={() => {
+          navigate(`/logged-in/${conversation.id}`);
+        }}
+      >
         <img
           className="avatar"
           height="50"

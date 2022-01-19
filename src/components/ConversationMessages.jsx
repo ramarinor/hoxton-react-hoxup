@@ -1,66 +1,23 @@
-function ConversationMessages() {
+import { useEffect, useState } from "react";
+import ConversationMessage from "./ConversationMessage";
+
+function ConversationMessages({ conversationId, currentUser }) {
+  const [messages, setMessages] = useState([]);
+  useEffect(() => {
+    fetch(`http://localhost:4000/messages?conversationId=${conversationId}`)
+      .then((resp) => resp.json())
+      .then((messagesFromServer) => setMessages(messagesFromServer));
+  }, [conversationId]);
   return (
     <ul className="conversation__messages">
-      <li className="outgoing">
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Natus
-          excepturi non odit quisquam et assumenda suscipit maxime officiis
-          repellat possimus! Soluta illum rerum eligendi labore ut nemo quod
-          voluptates ad.
-        </p>
-      </li>
-
-      {/* <!-- Outgoing messages are messages sent by the current logged in user --> */}
-      <li className="outgoing">
-        <p>Lorem ipsum...</p>
-      </li>
-      {/* <!--  -->
-
-<!-- This one doesnt belong to the current logged in user --> */}
-      <li>
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Natus
-          excepturi non odit quisquam et assumenda suscipit maxime officiis
-          repellat possimus!
-        </p>
-      </li>
-
-      {/* <!--  --> */}
-      <li className="outgoing">
-        <p>Some test message</p>
-      </li>
-      <li className="outgoing">
-        <p>more messagesss!!!</p>
-      </li>
-      <li className="outgoing">
-        <p>more messagesss!!!</p>
-      </li>
-      <li className="outgoing">
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Natus
-          excepturi non odit quisquam et assumenda suscipit maxime officiis
-          repellat possimus! Soluta illum rerum eligendi labore ut nemo quod
-          voluptates ad.Lorem ipsum dolor sit amet consectetur, adipisicing
-          elit. Natus excepturi non odit quisquam et assumenda suscipit maxime
-          officiis repellat possimus! Soluta illum rerum eligendi labore ut nemo
-          quod voluptates ad.Lorem ipsum dolor sit amet consectetur, adipisicing
-          elit. Natus excepturi non odit quisquam et assumenda suscipit maxime
-          officiis repellat possimus! Soluta illum rerum eligendi labore ut nemo
-          quod voluptates ad.Lorem ipsum dolor sit amet consectetur, adipisicing
-          elit. Natus excepturi non odit quisquam et assumenda suscipit maxime
-          officiis repellat possimus! Soluta illum rerum eligendi labore ut nemo
-          quod voluptates ad.Lorem ipsum dolor sit amet consectetur, adipisicing
-          elit. Natus excepturi non odit quisquam et assumenda suscipit maxime
-          officiis repellat possimus! Soluta illum rerum eligendi labore ut nemo
-          quod voluptates ad.Lorem ipsum dolor sit amet consectetur, adipisicing
-          elit. Natus excepturi non odit quisquam et assumenda suscipit maxime
-          officiis repellat possimus! Soluta illum rerum eligendi labore ut nemo
-          quod voluptates ad.Lorem ipsum dolor sit amet consectetur, adipisicing
-          elit. Natus excepturi non odit quisquam et assumenda suscipit maxime
-          officiis repellat possimus! Soluta illum rerum eligendi labore ut nemo
-          quod voluptates ad.
-        </p>
-      </li>
+      {messages.map((message) => (
+        <ConversationMessage
+          key={message.id}
+          conversationId={conversationId}
+          currentUser={currentUser}
+          message={message}
+        />
+      ))}
     </ul>
   );
 }

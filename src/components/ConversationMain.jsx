@@ -1,7 +1,7 @@
 import ConversationMessages from "./ConversationMessages";
 import MessageBox from "./MessageBox";
 
-function ConversationMain() {
+function ConversationMain({ conversationId, currentUser }) {
   return (
     <main className="conversation">
       {/* <!-- Chat header --> */}
@@ -11,7 +11,10 @@ function ConversationMain() {
 
       The Messages List will go here. Check main-messages-list.html
      --> */}
-      <ConversationMessages />
+      <ConversationMessages
+        conversationId={conversationId}
+        currentUser={currentUser}
+      />
 
       {/* <!-- Message Box --> */}
       <MessageBox />
