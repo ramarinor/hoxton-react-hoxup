@@ -60,6 +60,11 @@
       "userId": 1,
       "participantId": 2,
       "id": 1
+    },
+    {
+      "userId": 1,
+      "participantId": 3,
+      "id": 2
     }
   ]
 }

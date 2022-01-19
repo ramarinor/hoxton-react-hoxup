@@ -1,5 +1,3 @@
-import { useState } from "react";
-import { useEffect } from "react/cjs/react.development";
 import ConversationsLiEl from "./ConversationsLiEl";
 
 function SidePanel({ currentUser, users, conversations }) {
