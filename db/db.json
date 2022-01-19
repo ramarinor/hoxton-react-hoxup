@@ -29,6 +29,37 @@
       "id": 4
     }
   ],
-  "messages": [],
-  "conversations": []
+  "messages": [
+    {
+      "userId": 1,
+      "messageText": "hey",
+      "conversationId": 1,
+      "id": 1
+    },
+    {
+      "userId": 1,
+      "messageText": "are you there?",
+      "conversationId": 1,
+      "id": 2
+    },
+    {
+      "userId": 2,
+      "messageText": "yes!",
+      "conversationId": 1,
+      "id": 3
+    },
+    {
+      "userId": 2,
+      "messageText": "What's up?",
+      "conversationId": 1,
+      "id": 4
+    }
+  ],
+  "conversations": [
+    {
+      "userId": 1,
+      "participantId": 2,
+      "id": 1
+    }
+  ]
 }
