@@ -1,4 +1,4 @@
-function SidePanel() {
+function SidePanel({ currentUser }) {
   return (
     <aside>
       {/* <!-- Side Header --> */}
@@ -7,20 +7,17 @@ function SidePanel() {
           className="avatar"
           width="50"
           height="50"
-          src="https://robohash.org/2"
-          alt=""
+          src={currentUser.avatar}
+          alt={`${currentUser.firstName} ${currentUser.lastName}`}
         />
-        <h3>Tin Man</h3>
+        <h3>
+          {currentUser.firstName} {currentUser.lastName}
+        </h3>
       </header>
 
       {/* <!-- Search form --> */}
       <form className="aside__search-container">
-        <input
-          type="search"
-          name="messagesSearch"
-          placeholder="Search chats"
-          value=""
-        />
+        <input type="search" name="messagesSearch" placeholder="Search chats" />
       </form>
 
       {/* <!-- 

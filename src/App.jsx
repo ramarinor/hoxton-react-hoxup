@@ -20,7 +20,10 @@ export default function App() {
           element={<Login users={users} setCurrentUser={setCurrentUser} />}
         />
         <Route path="/logged-in" element={<Main currentUser={currentUser} />} />
-        <Route path="/logged-in/:conversationId" element={<Main />} />
+        <Route
+          path="/logged-in/:conversationId"
+          element={<Main currentUser={currentUser} />}
+        />
       </Routes>
     </div>
   );

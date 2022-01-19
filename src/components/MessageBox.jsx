@@ -2,7 +2,7 @@ function MessageBox() {
   return (
     <footer>
       <form className="panel conversation__message-box">
-        <input type="text" placeholder="Type a message" value="" />
+        <input type="text" placeholder="Type a message" />
         <button type="submit">
           {/* <!-- This is the send button --> */}
           <svg
