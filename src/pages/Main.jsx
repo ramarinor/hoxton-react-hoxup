@@ -1,13 +1,17 @@
-import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react/cjs/react.development";
 import ConversationMain from "../components/ConversationMain";
 import SidePanel from "../components/SidePanel";
 
-function Main({ currentUser, users, setModal }) {
+function Main({
+  currentUser,
+  users,
+  setModal,
+  setConversations,
+  conversations
+}) {
   const params = useParams();
   const navigate = useNavigate();
-  const [conversations, setConversations] = useState([]);
 
   useEffect(() => {
     if (currentUser === null) {
@@ -19,7 +23,7 @@ function Main({ currentUser, users, setModal }) {
           setConversations(conversationsFromServer)
         );
     }
-  }, []);
+  }, [currentUser]);
 
   if (currentUser === null) return null;
   return (

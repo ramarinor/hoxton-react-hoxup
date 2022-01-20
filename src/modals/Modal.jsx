@@ -1,11 +1,12 @@
 import CreateUserModal from "./CreateUserModal";
+import SettingsModal from "./SettingsModal";
 
-function Modal({ modal, setModal }) {
+function Modal({ modal, setModal, logout }) {
   switch (modal) {
     case "newUser":
       return <CreateUserModal setModal={setModal} />;
     case "settings":
-      return <p>Settings</p>;
+      return <SettingsModal setModal={setModal} logout={logout} />;
     case "newChat":
       return <p>new Chat</p>;
     default:

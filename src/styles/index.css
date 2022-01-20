@@ -280,3 +280,7 @@ textarea:focus {
   background-color: var(--background-stripe);
   border-radius: 3px;
 }
+
+.delete-account {
+  color: crimson;
+}

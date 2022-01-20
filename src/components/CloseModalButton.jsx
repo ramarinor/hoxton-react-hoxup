@@ -1,6 +1,6 @@
 function CloseModalButton({ setModal }) {
   return (
-    <button className="close-modal" onClick={() => setModal("")}>
+    <button className="close-modal" onClick={() => setModal("i like bananas")}>
       x
     </button>
   );
