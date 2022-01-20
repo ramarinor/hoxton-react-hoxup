@@ -1,6 +1,6 @@
 import UserListEl from "../components/UserListEl";
 
-function Login({ users, setCurrentUser }) {
+function Login({ users, setCurrentUser, setModal }) {
   return (
     <div className="main-wrapper login">
       <section className="login-section">
@@ -14,7 +14,12 @@ function Login({ users, setCurrentUser }) {
             />
           ))}
           <li>
-            <button className="user-selection">
+            <button
+              className="user-selection"
+              onClick={() => {
+                setModal("newUser");
+              }}
+            >
               <h3>+ Add a new user</h3>
             </button>
           </li>

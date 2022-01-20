@@ -1,4 +1,4 @@
-function ConversationMessage({ message, conversationId, currentUser }) {
+function ConversationMessage({ message, currentUser }) {
   return (
     <li className={message.userId === currentUser.id ? "outgoing" : null}>
       <p>{message.messageText}</p>

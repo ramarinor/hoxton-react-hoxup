@@ -1,6 +1,6 @@
 import ConversationsLiEl from "./ConversationsLiEl";
 
-function SidePanel({ currentUser, users, conversations }) {
+function SidePanel({ currentUser, users, conversations, setModal }) {
   return (
     <aside>
       {/* <!-- Side Header --> */}
@@ -15,6 +15,13 @@ function SidePanel({ currentUser, users, conversations }) {
         <h3>
           {currentUser.firstName} {currentUser.lastName}
         </h3>
+        <button
+          onClick={() => {
+            setModal("settings");
+          }}
+        >
+          <h2>🍌</h2>
+        </button>
       </header>
 
       {/* <!-- Search form --> */}
@@ -31,7 +38,12 @@ Side Chat List goes here. Check side-chat-list.html
 
       <ul>
         <li>
-          <button className="chat-button">
+          <button
+            className="chat-button"
+            onClick={() => {
+              setModal("newChat");
+            }}
+          >
             <div>
               <h3>+ Start a new Chat</h3>
             </div>

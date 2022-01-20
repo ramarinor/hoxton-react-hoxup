@@ -4,7 +4,7 @@ import { useEffect } from "react/cjs/react.development";
 import ConversationMain from "../components/ConversationMain";
 import SidePanel from "../components/SidePanel";
 
-function Main({ currentUser, users }) {
+function Main({ currentUser, users, setModal }) {
   const params = useParams();
   const navigate = useNavigate();
   const [conversations, setConversations] = useState([]);
@@ -29,6 +29,7 @@ function Main({ currentUser, users }) {
         currentUser={currentUser}
         users={users}
         conversations={conversations}
+        setModal={setModal}
       />
 
       {/* <!-- Main Chat Section --> */}

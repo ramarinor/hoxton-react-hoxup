@@ -13,7 +13,6 @@ function ConversationMessages({ conversationId, currentUser }) {
       {messages.map((message) => (
         <ConversationMessage
           key={message.id}
-          conversationId={conversationId}
           currentUser={currentUser}
           message={message}
         />
