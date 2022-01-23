@@ -1,9 +1,29 @@
 import CloseModalButton from "../components/CloseModalButton";
-
-function CreateUserModal({ setModal }) {
+function CreateUserModal({ setModal, users, setUsers }) {
+  function createUser(e) {
+    e.preventDefault();
+    const formEl = e.target;
+    const newUserData = {
+      firstName: formEl.firstName.value,
+      lastName: formEl.lastName.value,
+      phoneNumber: formEl.phoneNumber.value,
+      avatar: `https://avatars.dicebear.com/api/avataaars/${formEl.firstName.value}${formEl.lastName.value}.svg`
+    };
+    fetch("http://localhost:4000/users", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newUserData)
+    })
+      .then((resp) => resp.json())
+      .then((user) => {
+        const updatedUsers = [...users, user];
+        setUsers(updatedUsers);
+        setModal("i like banans");
+      });
+  }
   return (
     <div className="modal-wrapper">
-      <form className="modal">
+      <form className="modal" onSubmit={createUser}>
         <CloseModalButton setModal={setModal} />
         <h2 className="modal-title">Enter your details</h2>
         <label htmlFor="firstName">

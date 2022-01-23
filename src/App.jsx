@@ -58,7 +58,13 @@ export default function App() {
           }
         />
       </Routes>
-      <Modal modal={modal} setModal={setModal} logout={logout} />
+      <Modal
+        modal={modal}
+        setModal={setModal}
+        logout={logout}
+        users={users}
+        setUsers={setUsers}
+      />
     </div>
   );
 }
