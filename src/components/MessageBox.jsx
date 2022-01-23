@@ -1,8 +1,44 @@
-function MessageBox() {
+function MessageBox({
+  messages,
+  setMessages,
+  currentUser,
+  conversationId,
+  conversations,
+  setConversations
+}) {
+  function createMessage(e) {
+    e.preventDefault();
+    const formEl = e.target;
+    const newMessageData = {
+      userId: currentUser.id,
+      messageText: formEl.text.value,
+      conversationId: conversationId
+    };
+    fetch("http://localhost:4000/messages", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newMessageData)
+    })
+      .then((resp) => resp.json())
+      .then((message) => {
+        const updatedMessages = [...messages, message];
+        setMessages(updatedMessages);
+        const updatedConversations = JSON.parse(JSON.stringify(conversations));
+        const conversationToUpdate = updatedConversations.find(
+          (conversation) => conversation.id === conversationId
+        );
+        conversationToUpdate.messages.push(message);
+        setConversations(updatedConversations);
+        formEl.reset();
+      });
+  }
   return (
     <footer>
-      <form className="panel conversation__message-box">
-        <input type="text" placeholder="Type a message" />
+      <form
+        className="panel conversation__message-box"
+        onSubmit={createMessage}
+      >
+        <input type="text" placeholder="Type a message" name="text" required />
         <button type="submit">
           {/* <!-- This is the send button --> */}
           <svg

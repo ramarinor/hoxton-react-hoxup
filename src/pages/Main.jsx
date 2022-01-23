@@ -45,8 +45,10 @@ function Main({
       {/* <!-- Main Chat Section --> */}
       {params.conversationId ? (
         <ConversationMain
-          conversationId={params.conversationId}
+          conversationId={Number(params.conversationId)}
           currentUser={currentUser}
+          conversations={conversations}
+          setConversations={setConversations}
         />
       ) : null}
     </div>
