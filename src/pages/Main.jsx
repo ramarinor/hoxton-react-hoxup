@@ -17,10 +17,16 @@ function Main({
     if (currentUser === null) {
       navigate("/login");
     } else {
-      fetch(`http://localhost:4000/conversations?userId=${currentUser.id}`)
+      fetch("http://localhost:4000/conversations?_embed=messages")
         .then((resp) => resp.json())
         .then((conversationsFromServer) =>
-          setConversations(conversationsFromServer)
+          setConversations(
+            conversationsFromServer.filter(
+              (conversation) =>
+                conversation.userId === currentUser.id ||
+                conversation.participantId === currentUser.id
+            )
+          )
         );
     }
   }, [currentUser]);

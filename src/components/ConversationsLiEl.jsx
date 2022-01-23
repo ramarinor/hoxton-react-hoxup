@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function ConversationsLiEl({ currentUser, users, conversation }) {
@@ -9,12 +8,7 @@ function ConversationsLiEl({ currentUser, users, conversation }) {
         user.id === conversation.participantId) &&
       user.id !== currentUser.id
   );
-  const [messages, setMessages] = useState([]);
-  useEffect(() => {
-    fetch(`http://localhost:4000/messages?conversationId=${conversation.id}`)
-      .then((resp) => resp.json())
-      .then((messagesFromServer) => setMessages(messagesFromServer));
-  }, []);
+
   return (
     <li>
       <button
@@ -35,8 +29,9 @@ function ConversationsLiEl({ currentUser, users, conversation }) {
             {user.firstName} {user.lastName}
           </h3>
           <p>
-            {messages.length > 0
-              ? messages[messages.length - 1].messageText
+            {conversation.messages.length > 0
+              ? conversation.messages[conversation.messages.length - 1]
+                  .messageText
               : "No messages yet"}
           </p>
         </div>
