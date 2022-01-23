@@ -19,6 +19,21 @@ export default function App() {
     setCurrentUser(null);
     setModal("i like banans");
   }
+  const usersIHaveNotTalkedToYet = users.filter((user) => {
+    // when do I want to keep this user?
+
+    // don't show the currently logged in user
+    if (currentUser && user.id === currentUser.id) return false;
+
+    // don't show any users in conversations
+    // Is this user's id in the conversations?
+    // Is it either in userId or participantId
+    for (const conversation of conversations) {
+      if (conversation.userId === user.id) return false;
+      if (conversation.participantId === user.id) return false;
+    }
+    return true;
+  });
   return (
     <div className="App">
       <Routes>
@@ -64,6 +79,10 @@ export default function App() {
         logout={logout}
         users={users}
         setUsers={setUsers}
+        usersIHaveNotTalkedToYet={usersIHaveNotTalkedToYet}
+        currentUser={currentUser}
+        conversations={conversations}
+        setConversations={setConversations}
       />
     </div>
   );
