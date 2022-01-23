@@ -1,6 +1,13 @@
+import { useState } from "react/cjs/react.development";
 import ConversationsLiEl from "./ConversationsLiEl";
 
 function SidePanel({ currentUser, users, conversations, setModal }) {
+  const [search, setSearch] = useState("");
+  const conversationsToDisplay = conversations.filter((conversation) =>
+    conversation.messages.some((message) =>
+      message.messageText.includes(search)
+    )
+  );
   return (
     <aside>
       {/* <!-- Side Header --> */}
@@ -25,8 +32,20 @@ function SidePanel({ currentUser, users, conversations, setModal }) {
       </header>
 
       {/* <!-- Search form --> */}
-      <form className="aside__search-container">
-        <input type="search" name="messagesSearch" placeholder="Search chats" />
+      <form
+        className="aside__search-container"
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}
+      >
+        <input
+          type="search"
+          name="messagesSearch"
+          placeholder="Search chats"
+          onChange={(e) => {
+            setSearch(e.target.value);
+          }}
+        />
       </form>
 
       {/* <!-- 
@@ -49,7 +68,7 @@ Side Chat List goes here. Check side-chat-list.html
             </div>
           </button>
         </li>
-        {conversations.map((conversation) => (
+        {conversationsToDisplay.map((conversation) => (
           <ConversationsLiEl
             key={conversation.id}
             currentUser={currentUser}
