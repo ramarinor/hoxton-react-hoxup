@@ -3,11 +3,14 @@ import ConversationsLiEl from "./ConversationsLiEl";
 
 function SidePanel({ currentUser, users, conversations, setModal }) {
   const [search, setSearch] = useState("");
-  const conversationsToDisplay = conversations.filter((conversation) =>
-    conversation.messages.some((message) =>
-      message.messageText.includes(search)
-    )
-  );
+  const conversationsToDisplay =
+    search === ""
+      ? conversations
+      : conversations.filter((conversation) =>
+          conversation.messages.some((message) =>
+            message.messageText.includes(search)
+          )
+        );
   return (
     <aside>
       {/* <!-- Side Header --> */}
